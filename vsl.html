@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script
+	src="https://cdn.xtracky.com/scripts/utm-handler.js"
+	data-token="f4626409-f09f-4bd9-a2a1-ee5ef086e754"
+>
+</script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w1ds7rvhjt");
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cashbacks</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; background: #f1f3f4; color: #333; }
+
+    /* ── TOP PROGRESS BAR ── */
+    .top-progress-bar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      width: 100%;
+      overflow: hidden;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.8s ease;
+    }
+    .top-progress-bar::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: transparent;
+  transition: none;
+  z-index: 0;
+    }
+    .top-bar-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.2px;
+    }
+    .top-bar-pct { font-size: 13px; font-weight: 800; opacity: 0.95; }
+    .bar-spinner {
+      width: 16px; height: 16px;
+      border: 2.5px solid rgba(255,255,255,0.5);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .bar-check { font-size: 17px; line-height: 1; }
+
+    /* ── HEADER ── */
+    .top-bar {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .top-bar-left { display: flex; align-items: center; gap: 10px; }
+    .google-logo { font-size: 22px; font-weight: bold; letter-spacing: -1px; }
+    .google-logo span:nth-child(1) { color: #4285F4; }
+    .google-logo span:nth-child(2) { color: #EA4335; }
+    .google-logo span:nth-child(3) { color: #FBBC05; }
+    .google-logo span:nth-child(4) { color: #4285F4; }
+    .google-logo span:nth-child(5) { color: #34A853; }
+    .google-logo span:nth-child(6) { color: #EA4335; }
+    .divider-logo { color: #ccc; font-size: 20px; }
+    .program-name { color: #555; font-size: 15px; }
+    .balance-badge {
+      background: #f8f9fa;
+      border: 1px solid #dadce0;
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #333;
+    }
+    .balance-badge span { color: #1a73e8; }
+
+    /* ── MAIN ── */
+    .main { max-width: 700px; margin: 0 auto; padding: 24px 16px; }
+    .page-title { text-align: center; font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+    .watching-now {
+      text-align: center; font-size: 14px; color: #555; margin-bottom: 18px;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .red-dot {
+      width: 9px; height: 9px; background: #e53935; border-radius: 50%;
+      display: inline-block; animation: blink 1.2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+    .watching-now strong { color: #1a1a1a; }
+    .watching-text { color: #e53935; font-weight: 600; }
+
+    /* ── PLAYER ── */
+    .player-wrapper {
+      width: 100%; background: #000; border-radius: 8px;
+      overflow: hidden; margin-bottom: 24px; position: relative; aspect-ratio: 16/9;
+    }
+    #vturb-player-container { width: 100%; height: 100%; }
+
+    /* ── SUCCESS BOX ── */
+    .success-box {
+      display: none;
+      background: #fff; border: 2px solid #34A853; border-radius: 10px;
+      padding: 28px 20px; margin-bottom: 24px; text-align: center;
+      animation: fadeInUp 0.7s ease;
+    }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .success-box .check-big { font-size: 40px; margin-bottom: 10px; }
+    .success-box h2 { font-size: 20px; color: #1a1a1a; margin-bottom: 6px; }
+    .success-box p  { font-size: 15px; color: #555; margin-bottom: 18px; }
+    .click-hint { font-size: 17px; font-weight: 700; color: #34A853; margin-bottom: 14px; animation: pulse-txt 1s infinite; }
+    @keyframes pulse-txt { 0%,100%{opacity:1}50%{opacity:0.6} }
+    .green-btn {
+      display: inline-block; background: #34A853; color: #fff;
+      font-size: 17px; font-weight: 700; padding: 15px 40px;
+      border-radius: 6px; text-decoration: none; cursor: pointer; border: none;
+      animation: pulse-green 0.9s infinite;
+    }
+    @keyframes pulse-green {
+      0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(52,168,83,0.5)}
+      50%{transform:scale(1.04);box-shadow:0 0 0 10px rgba(52,168,83,0)}
+    }
+
+    /* ── COMMENTS ── */
+    .comments-section {
+      background: #fff; border: 1px solid #e0e0e0;
+      border-radius: 10px; padding: 16px 20px; margin-bottom: 32px;
+    }
+    .comments-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .comments-title { font-size: 16px; font-weight: 600; color: #1a1a1a; }
+    .comments-count { color: #888; font-size: 14px; margin-left: 6px; }
+    .sort-btn { font-size: 13px; color: #555; background: none; border: none; cursor: pointer; }
+    .comment { display: flex; gap: 12px; margin-bottom: 20px; }
+    .comment:last-child { margin-bottom: 0; }
+    .avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .comment-body { flex: 1; }
+    .comment-name { font-weight: 700; font-size: 14px; color: #1a1a1a; margin-bottom: 3px; }
+    .comment-text { font-size: 14px; color: #444; line-height: 1.5; margin-bottom: 8px; }
+    .comment-meta { display: flex; align-items: center; gap: 10px; font-size: 11px; color: #888; }
+    .meta-time { font-size: 11px; color: #aaa; }
+
+    /* ── LIKE / DISLIKE BUTTONS ── */
+    .vote-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 11px;
+      color: #888;
+      padding: 3px 5px;
+      border-radius: 4px;
+      transition: color 0.2s, transform 0.15s;
+      user-select: none;
+      line-height: 1;
+    }
+    .vote-btn:hover { background: #f0f0f0; }
+    .vote-btn svg { transition: stroke 0.2s, fill 0.2s, transform 0.2s; flex-shrink: 0; }
+
+    /* LIKED state */
+    .vote-btn.liked { color: #1a73e8; }
+    .vote-btn.liked svg { stroke: #1a73e8; fill: #1a73e8; }
+
+    /* DISLIKED state */
+    .vote-btn.disliked { color: #e53935; }
+    .vote-btn.disliked svg { stroke: #e53935; fill: #e53935; }
+
+    /* bounce animation */
+    @keyframes vote-bounce {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.35); }
+      70%  { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+    .vote-btn.bouncing svg { animation: vote-bounce 0.35s ease; }
+
+    .reply-btn {
+      background: none; border: none; cursor: pointer;
+      font-size: 11px; font-weight: 600; color: #888;
+      padding: 3px 5px; border-radius: 4px;
+      transition: color 0.2s;
+    }
+    .reply-btn:hover { color: #333; background: #f0f0f0; }
+
+    /* ── FOOTER ── */
+    .footer { text-align: center; padding: 24px 16px 32px; font-size: 12px; color: #aaa; line-height: 1.8; }
+    .footer-links { margin-bottom: 8px; }
+    .footer-links a { color: #888; text-decoration: none; margin: 0 6px; }
+    .footer-links a:hover { text-decoration: underline; }
+
+    /* ── NOTIFICATIONS ── */
+    #notif-container {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      display: flex; flex-direction: column; gap: 10px; pointer-events: none;
+    }
+    .notif-card {
+      background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+      min-width: 270px; max-width: 320px; pointer-events: all;
+      animation: slideInRight 0.5s ease, fadeOut 0.5s ease 4.5s forwards;
+    }
+    @keyframes slideInRight { from{opacity:0;transform:translateX(80px)} to{opacity:1;transform:translateX(0)} }
+    @keyframes fadeOut { from{opacity:1} to{opacity:0;transform:translateX(40px)} }
+    .notif-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .notif-info { flex: 1; }
+    .notif-name { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+    .notif-loc  { font-size: 11px; color: #888; }
+    .notif-action { font-size: 13px; color: #34A853; font-weight: 600; }
+
+    @media (max-width: 600px) {
+      .page-title { font-size: 17px; }
+      #notif-container { right: 10px; bottom: 10px; }
+      .notif-card { min-width: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ TOP PROGRESS BAR ══ -->
+<div class="top-progress-bar" id="top-progress-bar"
+     style="background:#1a73e8; --fill:0%; --fill-color:rgba(255,255,255,0.18);">
+  <div class="top-bar-content">
+    <div class="bar-spinner" id="bar-spinner"></div>
+    <span id="bar-text">Processing your withdrawal...</span>
+  </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<div class="top-bar">
+  <div class="top-bar-left">
+    <div class="google-logo">
+      <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+    </div>
+    <span class="divider-logo">|</span>
+    <span class="program-name">CashBacks Program</span>
+  </div>
+  <div class="balance-badge">Balance: <span id="balance-display">$230.00</span></div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<div class="main">
+
+  <h1 class="page-title">Watch this presentation to discover how to withdraw your money...</h1>
+  <div class="watching-now">
+    <span class="red-dot"></span>
+    <strong>1.899 people</strong>
+    <span class="watching-text">watching now</span>
+  </div>
+
+
+
+     <vturb-smartplayer id="vid-69dfb398d9f0532551d6cbe9" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/09fa568c-295c-4a41-adee-88f982255bff/players/69dfb398d9f0532551d6cbe9/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+
+
+
+  
+
+  <!-- COMMENTS -->
+  <div class="comments-section">
+    <div class="comments-header">
+      <div>
+        <span class="comments-title">💬 Comments</span>
+        <span class="comments-count">32,112</span>
+      </div>
+      <button class="sort-btn">Most relevant ▾</button>
+    </div>
+
+    <!-- Comment 1 -->
+    <div class="comment">
+      <img class="avatar" src="https://i.pravatar.cc/80?img=47" alt="Maria Johnson"/>
+      <div class="comment-body">
+        <div class="comment-name">Maria Johnson</div>
+        <div class="comment-text">I couldn't believe it when it hit my account! $230 in less than 10 minutes via bank transfer. Thank you so much for this video, it saved my month!</div>
+        <div class="comment-meta">
+          <span class="meta-time">2h</span>
+          <button class="vote-btn like-btn" data-count="127" data-pair="dl-1">
+            <!-- thumbs-up SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/>
+            </svg>
+            <span class="vote-count">127</span>
+          </button>
+          <button class="vote-btn dislike-btn" data-pair="dl-1">
+            <!-- thumbs-down SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/>
+            </svg>
+          </button>
+          <button class="reply-btn">Reply</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comment 2 -->
+    <div class="comment">
+      <img class="avatar" src="https://i.pravatar.cc/80?img=12" alt="Peter Lopez"/>
+      <div class="comment-body">
+        <div class="comment-name">Peter Lopez</div>
+        <div class="comment-text">At first I thought it was a scam. But I watched the whole video, understood how it works and decided to try. It's REAL! Arrived in 5 minutes. Sorry for doubting.</div>
+        <div class="comment-meta">
+          <span class="meta-time">3h</span>
+          <button class="vote-btn like-btn" data-count="89" data-pair="dl-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/>
+            </svg>
+            <span class="vote-count">89</span>
+          </button>
+          <button class="vote-btn dislike-btn" data-pair="dl-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/>
+            </svg>
+          </button>
+          <button class="reply-btn">Reply</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comment 3 -->
+    <div class="comment">
+      <img class="avatar" src="https://i.pravatar.cc/80?img=32" alt="Julia Rodriguez"/>
+      <div class="comment-body">
+        <div class="comment-name">Julia Rodriguez</div>
+        <div class="comment-text">My mom sent me this link and I thought "here comes the scam" lol. GUYS?? It actually arrived!! Now I'm the one sending it to everyone.</div>
+        <div class="comment-meta">
+          <span class="meta-time">4h</span>
+          <button class="vote-btn like-btn" data-count="156" data-pair="dl-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/>
+            </svg>
+            <span class="vote-count">156</span>
+          </button>
+          <button class="vote-btn dislike-btn" data-pair="dl-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/>
+            </svg>
+          </button>
+          <button class="reply-btn">Reply</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comment 4 -->
+    <div class="comment">
+      <img class="avatar" src="https://i.pravatar.cc/80?img=59" alt="Robert Fernandez"/>
+      <div class="comment-body">
+        <div class="comment-name">Robert Fernandez</div>
+        <div class="comment-text">I've worked in IT for 15 years and I can confirm: this is legit. I did mine and received it instantly. I recommend watching the full video to understand it well!</div>
+        <div class="comment-meta">
+          <span class="meta-time">5h</span>
+          <button class="vote-btn like-btn" data-count="203" data-pair="dl-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/>
+            </svg>
+            <span class="vote-count">203</span>
+          </button>
+          <button class="vote-btn dislike-btn" data-pair="dl-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/>
+            </svg>
+          </button>
+          <button class="reply-btn">Reply</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /comments -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>·<a href="#">Terms</a>·<a href="#">Cookies</a>·<a href="#">Refund</a>·<a href="#">Disclaimer</a>
+    </div>
+    <div>D A Digital LTDA · CNPJ: 59.973.085/0001-37</div>
+    <div>support@cashbacks.com</div>
+    <div>© 2025 . All rights reserved.</div>
+    <div style="margin-top:10px;font-size:11px;">This site is not affiliated with, endorsed by, or sponsored by Google LLC, Alphabet Inc., TikTok, ByteDance, YouTube, or any of their subsidiaries.</div>
+    <div style="margin-top:8px;font-size:11px;">Disclaimer: This content is for informational and educational purposes only. Individual results may vary.</div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- NOTIFICATIONS -->
+<div id="notif-container"></div>
+
+<script>
+/* LIKE / DISLIKE */
+document.querySelectorAll('.like-btn').forEach(likeBtn => {
+  const pair = likeBtn.dataset.pair;
+  const disBtn = document.querySelector(`.dislike-btn[data-pair="${pair}"]`);
+  const countEl = likeBtn.querySelector('.vote-count');
+  const baseCount = parseInt(likeBtn.dataset.count, 10);
+
+  function bounce(btn) {
+    btn.classList.remove('bouncing');
+    void btn.offsetWidth;
+    btn.classList.add('bouncing');
+    btn.querySelector('svg').addEventListener('animationend', () => {
+      btn.classList.remove('bouncing');
+    }, { once: true });
+  }
+
+  likeBtn.addEventListener('click', () => {
+    const wasLiked = likeBtn.classList.contains('liked');
+    likeBtn.classList.remove('liked');
+    disBtn.classList.remove('disliked');
+
+    if (wasLiked) {
+      countEl.textContent = baseCount;
+    } else {
+      likeBtn.classList.add('liked');
+      countEl.textContent = baseCount + 1;
+      bounce(likeBtn);
+    }
+  });
+
+  disBtn.addEventListener('click', () => {
+    const wasDisliked = disBtn.classList.contains('disliked');
+    likeBtn.classList.remove('liked');
+    disBtn.classList.remove('disliked');
+    countEl.textContent = baseCount;
+
+    if (!wasDisliked) {
+      disBtn.classList.add('disliked');
+      bounce(disBtn);
+    }
+  });
+});
+
+/* TOP BAR FIXA */
+const bar = document.getElementById('top-progress-bar');
+const barText = document.getElementById('bar-text');
+const barSpinner = document.getElementById('bar-spinner');
+
+bar.style.background = '#f39c12';
+bar.style.setProperty('--fill', '0%');
+barText.textContent = 'Processing your withdraw...';
+
+/* NOTIFICATIONS */
+const notifications = [
+  { name: 'Sarah W.',     loc: 'Los Angeles, CA',  img: 'https://i.pravatar.cc/80?img=5'  },
+  { name: 'James T.',     loc: 'Houston, TX',      img: 'https://i.pravatar.cc/80?img=15' },
+  { name: 'Amanda R.',    loc: 'Miami, FL',        img: 'https://i.pravatar.cc/80?img=23' },
+  { name: 'Michael B.',   loc: 'Chicago, IL',      img: 'https://i.pravatar.cc/80?img=51' },
+  { name: 'Linda K.',     loc: 'Phoenix, AZ',      img: 'https://i.pravatar.cc/80?img=44' },
+  { name: 'Carlos M.',    loc: 'New York, NY',     img: 'https://i.pravatar.cc/80?img=8'  },
+  { name: 'Stephanie L.', loc: 'San Diego, CA',    img: 'https://i.pravatar.cc/80?img=35' },
+  { name: 'David P.',     loc: 'Dallas, TX',       img: 'https://i.pravatar.cc/80?img=57' },
+  { name: 'Patricia O.',  loc: 'Atlanta, GA',      img: 'https://i.pravatar.cc/80?img=20' },
+  { name: 'Kevin H.',     loc: 'Philadelphia, PA', img: 'https://i.pravatar.cc/80?img=66' },
+];
+let notifIndex = 0;
+
+function showNotif(data) {
+  const c = document.getElementById('notif-container');
+  const d = document.createElement('div');
+  d.className = 'notif-card';
+  d.innerHTML = `
+    <img class="notif-avatar" src="${data.img}" alt="${data.name}"/>
+    <div class="notif-info">
+      <div class="notif-name">${data.name} <span class="notif-loc">from ${data.loc}</span></div>
+      <div class="notif-action">Just withdrew $230.00</div>
+    </div>`;
+  c.appendChild(d);
+  setTimeout(() => d.remove(), 5000);
+}
+
+function scheduleNotif() {
+  setTimeout(() => {
+    showNotif(notifications[notifIndex % notifications.length]);
+    notifIndex++;
+    scheduleNotif();
+  }, 5000 + Math.random() * 9000);
+}
+setTimeout(() => {
+  showNotif(notifications[0]);
+  notifIndex = 1;
+  scheduleNotif();
+}, 3000);
+</script>
+
+</body>
+</html>

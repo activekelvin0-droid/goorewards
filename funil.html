@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script
+	src="https://cdn.xtracky.com/scripts/utm-handler.js"
+	data-token="f4626409-f09f-4bd9-a2a1-ee5ef086e754"
+>
+</script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "w1ds7rvhjt");
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashbacks</title>
+<style>
+*,*:before,*:after{box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;user-select:none}
+html{scroll-behavior:smooth}
+body{margin:0;background-color:hsl(220 15% 95%);color:hsl(220 10% 15%);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto;pointer-events:none}
+input{-webkit-user-select:text;-moz-user-select:text;user-select:text;font-family:inherit}
+a{color:inherit;text-decoration:none}
+
+:root{
+  --bg:hsl(220 15% 95%);
+  --fg:hsl(220 10% 15%);
+  --card:hsl(0 0% 100%);
+  --card-fg:hsl(220 10% 15%);
+  --primary:hsl(217 89% 51%);
+  --primary-fg:hsl(0 0% 100%);
+  --secondary:hsl(220 14% 93%);
+  --muted-fg:hsl(220 9% 40%);
+  --accent:hsl(142 71% 45%);
+  --accent-fg:hsl(0 0% 100%);
+  --border:hsl(220 13% 85%);
+  --shadow-card:0 2px 8px 0 rgb(60 64 67/.12),0 4px 16px 0 rgb(60 64 67/.08);
+  --shadow-cta:0 2px 6px 0 rgb(66 133 244/.35),0 4px 14px 0 rgb(66 133 244/.2);
+  --shadow-elevated:0 4px 16px 0 rgb(60 64 67/.15),0 8px 32px 0 rgb(60 64 67/.1);
+}
+
+/* Layout */
+.layout{min-height:100vh;background:var(--bg);display:flex;flex-direction:column}
+.top-logo-bar{width:100%;padding:.75rem 0 0;display:flex;justify-content:center}
+.logo-wrap{display:flex;align-items:center;gap:.5rem}
+.google-header-logo{height:1.5rem;object-fit:contain}
+.program-label{font-size:10px;color:var(--muted-fg);font-weight:500;letter-spacing:.025em;border-left:1px solid var(--border);padding-left:.5rem}
+.progress-bar-section{width:100%;background:hsla(220 15% 95%/.95);border-bottom:1px solid var(--border)}
+.progress-bar-inner{max-width:32rem;margin:0 auto;padding:.5rem 1rem}
+.progress-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+.progress-label{font-size:.75rem;color:var(--muted-fg);font-weight:500}
+.progress-pct{font-size:.75rem;color:var(--primary);font-weight:700}
+.google-progress-bar{width:100%;height:.375rem;background:var(--border);border-radius:9999px;overflow:hidden}
+.google-progress-fill{height:100%;border-radius:9999px;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .6s cubic-bezier(.4,0,.2,1);width:0%}
+.balance-row{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-top:.5rem}
+.balance-label{font-size:.75rem;color:var(--muted-fg)}
+.balance-status{font-size:.75rem;color:var(--accent);font-weight:700;opacity:0;transform:translateY(4px);transition:opacity .2s ease,transform .2s ease}
+.balance-status.active{opacity:1;transform:translateY(0)}
+.balance-amount{color:var(--primary);font-weight:700;font-size:1rem}
+.main-content{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:.25rem 1rem 1.25rem}
+.card-wrap{width:100%;max-width:28rem}
+
+/* Card */
+.google-card{background:var(--card);color:var(--card-fg);border:1px solid var(--border);border-radius:1rem;padding:1.25rem;box-shadow:var(--shadow-card)}
+
+/* Redemption badge */
+.redemption-badge{display:inline-flex;align-items:center;gap:.375rem;background:hsla(217 89% 51%/.1);color:var(--primary);font-size:10px;font-weight:600;padding:.25rem .75rem;border-radius:9999px}
+h2.card-title{font-size:1.125rem;line-height:1.75rem;font-weight:700;color:var(--fg);margin:.25rem 0 0}
+
+/* Amount box */
+.amount-box{background:var(--secondary);border-radius:.75rem;padding:.75rem;text-align:center}
+.amount-label{color:var(--muted-fg);font-size:10px;text-transform:uppercase;letter-spacing:.05em;font-weight:500;margin:0}
+.amount-value{font-size:1.5rem;line-height:2rem;font-weight:800;color:var(--primary);margin:.125rem 0 0}
+
+/* Brand image */
+.brand-image-box{background:var(--secondary);border-radius:1rem;padding:1rem 1.25rem;display:flex;justify-content:center;align-items:center}
+.brand-image{width:10rem;height:6rem;object-fit:contain}
+
+/* Code box */
+.code-box{background:var(--secondary);border-radius:.75rem;padding:.75rem;text-align:center;border:2px dashed var(--border)}
+.code-text{color:var(--primary);font-weight:700;font-size:1.25rem;letter-spacing:.3em;margin:0}
+.code-label{font-size:.75rem;color:var(--muted-fg);font-weight:500}
+
+/* Inputs */
+.inputs-label{font-size:.75rem;color:var(--muted-fg);font-weight:500}
+.inputs-row{display:flex;justify-content:center;gap:.5rem}
+.letter-input{
+  width:3rem;height:3.5rem;text-align:center;font-size:1.25rem;font-weight:700;
+  border-radius:.75rem;border:2px solid var(--border);
+  background:var(--bg);color:var(--fg);
+  outline:none;transition:all .2s;font-family:inherit;text-transform:uppercase
+}
+.letter-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px hsla(217 89% 51%/.2)}
+.letter-input.valid{border-color:var(--accent);background:hsla(142 71% 45%/.06);color:var(--accent)}
+.letter-input.invalid{border-color:hsl(4 90% 58%);background:hsla(4 90% 58%/.06);animation:shake .3s ease-in-out}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
+
+/* Buttons */
+.google-btn-success{
+  display:block;width:100%;border:0;border-radius:9999px;padding:.875rem 1rem;
+  font-size:1rem;font-weight:600;line-height:1.5;cursor:pointer;text-align:center;
+  background:var(--accent);color:var(--accent-fg);
+  transition:transform .2s ease,filter .2s ease,box-shadow .2s ease
+}
+.google-btn-success:hover{filter:brightness(1.04);box-shadow:var(--shadow-elevated)}
+.google-btn-success:active{transform:scale(.98)}
+
+/* Success screen */
+.success-icon{width:3.5rem;height:3.5rem;margin:0 auto;border-radius:9999px;background:hsla(142 71% 45%/.15);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center}
+.success-icon svg{width:1.75rem;height:1.75rem;color:var(--accent)}
+h1.success-title{font-size:1.5rem;font-weight:800;color:var(--fg);margin:.5rem 0 0}
+.success-subtitle{color:hsla(220 10% 15%/.7);font-size:.75rem;line-height:1.625;max-width:18rem;margin:.25rem auto 0}
+.total-balance-label{color:var(--muted-fg);font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:500;margin:0}
+.total-balance-amount{font-size:2.25rem;font-weight:800;color:var(--primary);margin:.25rem 0 0}
+.separator{border:none;border-top:1px solid var(--border);margin:.5rem 0}
+.transaction-item{display:flex;align-items:center;justify-content:space-between;background:var(--secondary);border-radius:.75rem;padding:.75rem;margin-bottom:.5rem}
+.transaction-logo{width:2rem;height:2rem;border-radius:.5rem;background:var(--card);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.transaction-logo img{width:1.5rem;height:1.5rem;object-fit:contain}
+.transaction-name{font-weight:500;font-size:.875rem;color:var(--fg)}
+.transaction-amount{font-weight:700;font-size:.875rem;color:var(--accent)}
+
+/* Footer */
+.site-footer{padding:.75rem 1rem 1.5rem;text-align:center}
+.footer-links-row{display:flex;align-items:center;justify-content:center;gap:.375rem;flex-wrap:wrap;margin-bottom:.375rem}
+.footer-links-row a{font-size:9px;color:hsla(220 9% 40%/.5);transition:color .15s}
+.footer-links-row a:hover{color:var(--muted-fg)}
+.footer-links-row .dot{font-size:9px;color:hsla(220 9% 40%/.3)}
+.footer-text{font-size:8px;color:hsla(220 9% 40%/.35);line-height:1.625;margin:0}
+.footer-text-sm{font-size:7px;color:hsla(220 9% 40%/.25);line-height:1.625;max-width:28rem;margin:.25rem auto 0}
+
+/* page animation */
+.page{animation:fadeSlide .3s ease-out}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hidden{display:none!important}
+
+/* Modal overlay */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.modal-overlay.active{opacity:1;pointer-events:auto}
+.modal-box{background:#fff;border-radius:1rem;width:100%;max-width:26rem;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.2);transform:translateY(16px);transition:transform .25s ease}
+.modal-overlay.active .modal-box{transform:translateY(0)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.25rem .75rem}
+.modal-header h3{font-size:1.125rem;font-weight:700;margin:0;color:var(--fg)}
+.modal-close{width:2rem;height:2rem;border-radius:9999px;border:none;background:var(--secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted-fg);font-size:1.125rem;transition:background .15s}
+.modal-close:hover{background:var(--border)}
+.modal-list{list-style:none;margin:0;padding:0 1.25rem 1rem}
+.modal-list li{display:flex;align-items:center;justify-content:space-between;padding:.875rem .75rem;border-radius:.75rem;cursor:pointer;transition:background .15s;gap:.75rem}
+.modal-list li:hover{background:var(--secondary)}
+.modal-list li.selected{background:hsla(217 89% 51%/.08);outline:2px solid var(--primary)}
+.modal-list li .method-icon{width:1.5rem;height:1.5rem;flex-shrink:0;color:var(--muted-fg)}
+.modal-list li .method-name{flex:1;font-size:.9375rem;font-weight:500;color:var(--fg)}
+.modal-list li .method-region{font-size:.75rem;color:var(--muted-fg);white-space:nowrap}
+.modal-confirm-btn{display:block;width:calc(100% - 2.5rem);margin:0 1.25rem 1.25rem;border:0;border-radius:9999px;padding:.875rem;font-size:1rem;font-weight:600;cursor:pointer;text-align:center;background:var(--secondary);color:var(--muted-fg);transition:background .2s,color .2s}
+.modal-confirm-btn.enabled{background:var(--accent);color:#fff;box-shadow:var(--shadow-cta)}
+.modal-confirm-btn.enabled:hover{filter:brightness(1.04)}
+
+/* Confirmation modal */
+.confirm-content{padding:1.5rem 1.25rem;text-align:center}
+.confirm-icon{width:3.5rem;height:3.5rem;margin:0 auto .75rem;border-radius:9999px;background:hsla(142 71% 45%/.12);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center}
+.confirm-icon svg{width:1.75rem;height:1.75rem;color:var(--accent)}
+.confirm-method-name{font-size:1.125rem;font-weight:700;color:var(--fg);margin:.25rem 0 .125rem}
+.confirm-method-sub{font-size:.8125rem;color:var(--muted-fg);margin:0 0 1rem}
+.confirm-amount-box{background:var(--secondary);border-radius:.75rem;padding:.75rem;margin-bottom:1rem}
+.confirm-amount-label{font-size:.6875rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted-fg);font-weight:500;margin:0}
+.confirm-amount-value{font-size:1.75rem;font-weight:800;color:var(--accent);margin:.25rem 0 0}
+.confirm-hint{font-size:.8125rem;color:var(--muted-fg);line-height:1.5;margin:0 0 1.25rem}
+.watch-video-btn{display:block;width:100%;border:0;border-radius:9999px;padding:.875rem;font-size:1rem;font-weight:600;cursor:pointer;text-align:center;background:var(--accent);color:#fff;box-shadow:var(--shadow-cta);transition:filter .2s,transform .2s}
+.watch-video-btn:hover{filter:brightness(1.04)}
+.watch-video-btn:active{transform:scale(.98)}
+
+/* Reward popup */
+.reward-toast{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(255,255,255,.4);backdrop-filter:blur(2px);z-index:900;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.reward-toast.active{opacity:1}
+.reward-toast-box{width:min(100%,26rem);background:#fff;border:2px solid hsla(142 71% 45%/.35);border-radius:1.25rem;box-shadow:0 10px 30px rgba(60,64,67,.16);padding:1.5rem 1.25rem;text-align:center;transform:translateY(16px) scale(.97);transition:transform .25s ease}
+.reward-toast.active .reward-toast-box{transform:translateY(0) scale(1)}
+.reward-toast-icon{width:4rem;height:4rem;margin:0 auto .875rem;border-radius:9999px;background:hsla(142 71% 45%/.15);display:flex;align-items:center;justify-content:center;color:var(--accent)}
+.reward-toast-icon svg{width:2rem;height:2rem}
+.reward-toast-amount{font-size:1.125rem;font-weight:800;color:var(--accent);margin:0 0 .375rem}
+.reward-toast-text{font-size:.875rem;color:var(--muted-fg);margin:0}
+
+@media(min-width:640px){
+  .google-header-logo{height:1.75rem}
+  .program-label{font-size:.75rem}
+  .progress-label,.progress-pct{font-size:.875rem}
+  .google-progress-bar{height:.5rem}
+  .balance-label{font-size:.875rem}
+  .balance-amount{font-size:1.125rem}
+  .google-card{padding:1.5rem}
+  h2.card-title{font-size:1.25rem}
+  .amount-value{font-size:1.875rem}
+  .brand-image{width:12rem;height:7rem}
+  .letter-input{width:3rem;height:3.5rem;font-size:1.25rem}
+  .code-text{font-size:1.5rem}
+  .google-btn-success{padding:1rem;font-size:1.125rem}
+  .success-icon{width:4rem;height:4rem}
+  .success-icon svg{width:2rem;height:2rem}
+  h1.success-title{font-size:1.875rem}
+  .success-subtitle{font-size:.875rem}
+  .total-balance-amount{font-size:3rem}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- Top Logo Bar -->
+  <div class="top-logo-bar">
+    <div class="logo-wrap">
+      <img class="google-header-logo" src="data:image/png;base64,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" alt="Google">
+      <span class="program-label">CashBacks Program</span>
+    </div>
+  </div>
+
+  <!-- Progress Bar Section -->
+  <div class="progress-bar-section">
+    <div class="progress-bar-inner">
+      <div class="progress-label-row">
+        <span class="progress-label">Progress</span>
+        <span class="progress-pct" id="progressPct">0%</span>
+      </div>
+      <div class="google-progress-bar">
+        <div class="google-progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <div class="balance-row">
+        <span class="balance-label">Balance</span>
+        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;justify-content:flex-end">
+          <span class="balance-status" id="balanceStatus">Adding to your balance...</span>
+          <span class="balance-amount" id="balanceAmount">$0.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="card-wrap">
+
+      <!-- PAGE 1: NIKE -->
+      <div id="page1" class="page">
+        <div class="google-card" style="margin-bottom:.75rem">
+          <div style="text-align:center;margin-bottom:.75rem">
+            <span class="redemption-badge">Redemption 1 of 3</span>
+            <h2 class="card-title">Redeem Your Cashback</h2>
+          </div>
+          <div class="amount-box" style="margin-bottom:.75rem">
+            <p class="amount-label">Amount to receive</p>
+            <p class="amount-value">$ 76.67</p>
+          </div>
+          <div class="brand-image-box" style="margin-bottom:.75rem">
+            <img class="brand-image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAEeUlEQVR4AexYS0hUYRSemZzrOI1ovkcNwRIZo/BRUELaIlxaIMpQtGvVUgpqpxESblqI1Eo3WfhYBFGBKLgIQiTL0Vbli3xllq/xkcw4fV/MgON1nMe96XD95fz8Z849/znnO9/x/qMG3RH7EYC1TrhgWDCssQ6IkdYYoTI4gmFZSzRmEAxrjFAZHMGwrCUaMwiGNUaoDM5RY1gnAMtmQGMGwbDGCJXBEQzLWhKeQR+euyJvknUs3Ag8FO6ZQP4E66mrq1Mz5s5cjM/YMV7jNna3x+PRc0EPSRggJMcgTozjsVqtNofDccnrS5tXjXhjDLLI5UEUgnRh12VlZRXabLbrdrv9fH19vRE2NgTb/sKA+3sEf8pE25mZmSfX1tbqnE7nV+8RFuhVQ94YizWRReoE6MZpd0dHh5SYmHglPj6+ITc3t02v11fExMSMtre3D2KqtuATUj4Gh2/EwqJ42DgzM/MIxYx0d3fPw+BjBGpQYQz6c7FogiSLnpycHGtKSopdkqSumpqaydjY2GZ8dprN5vtTU1ONw/hBdDYEW2iiFDCzeND5AihGdPwNdgJg4VADCvMSIHf6smh3dXW1BDDFaWlp9xISEvomJydnwORLgMy1Wq13m5qazo2PjzeMjIx8R2SeZy6ooQsThu4t92Sx0tLSEkfq9dbW1i+40MYFNaCQRYLcJotgsMpisTR3dnZ+MhgMHxcXFxs3NjbKAbo9IyOjFNNTPDs72waWecYHlHqwPLIClALWo/uxiLqA5UCR+3Xc90yP0TyF8b8N9l5NT0870Kiu9fX1OwBbgGc/UlNTH5eWluYtLy/bMbUfEJtnFQFFjH+iFLBhYWGBXd5AtCkwvYKdhdEG1U9oM8FSazKZ3q6urj4DuGsulysFQHUY5S9JSUm1lZWVZ8Hog76+vm/wZSwuno2IUcTwE8WAEY3F8CXzB7oTi+OKzU/IEHCaqoxG4w2AJchjYHgbo/y+sLDwVktLywU070lra+tPnCRI1kaQXDCpIwyqRiQfaAKnvjMmwdJm3dzcLMIop4FRd1xc3Au8iCpwjV0eHBx8jt9PTonvOiLIvRq3M25EulLAPjB7Jecz2gk2GcpFsGsG6KclJSVXcWffHBsb64WdfmSU+14Ng4taolP8DwA2TI9yCAqbn9BmhuWMJEnleNsuYXQf4uXU0N/f74CdZwmUfmSUO8z/V5hUSQZXenr6cQQ4gWXB8unpeCGdxrViy87ONpSVlfXOzc29GxgYmIMPQTIvR5ZAYTo4YWIl2Vz4Pvsbd6kB4JKx5+E7bg50S35+/kpRUdEQvhEN9/T0LCMJc3EaCJJgYTp4YRGKsuL6cOEb0SzuzNGJiYkh3KufqeOPiHk+Q3CC5CLIAxlb5AwoigF7IxOQDtcM2aOJn7moEyQX9UNfagHeDYifuQ4d4O4C1AK8O27UfhaAo5YalQoTDKvUyKgNIxiOWmpUKkwwrFIjozaMYDhqqVGjMMQQDKMJmhbBsKbpBTjBMJqgaREMa5pegDtyDP8FAAD//17VAHQAAAAGSURBVAMAJhJIiPdaIo0AAAAASUVORK5CYII=" alt="NIKE">
+          </div>
+          <div style="margin-bottom:.5rem">
+            <label class="code-label" style="display:block;margin-bottom:.375rem">Code</label>
+            <div class="code-box">
+              <p class="code-text">N I K E</p>
+            </div>
+          </div>
+          <div>
+            <label class="inputs-label" style="display:block;margin-bottom:.5rem">Type each letter to release your cashback</label>
+            <div class="inputs-row" id="inputs1">
+              <input class="letter-input" type="text" maxlength="1" data-index="0" data-answer="N" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="1" data-answer="I" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="2" data-answer="K" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="3" data-answer="E" autocomplete="off">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 2: AMAZON -->
+      <div id="page2" class="page hidden">
+        <div class="google-card" style="margin-bottom:.75rem">
+          <div style="text-align:center;margin-bottom:.75rem">
+            <span class="redemption-badge">Redemption 2 of 3</span>
+            <h2 class="card-title">Redeem Your Cashback</h2>
+          </div>
+          <div class="amount-box" style="margin-bottom:.75rem">
+            <p class="amount-label">Amount to receive</p>
+            <p class="amount-value">$ 88.33</p>
+          </div>
+          <div class="brand-image-box" style="margin-bottom:.75rem">
+            <img class="brand-image" src="data:image/png;base64,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" alt="AMAZON">
+          </div>
+          <div style="margin-bottom:.5rem">
+            <label class="code-label" style="display:block;margin-bottom:.375rem">Code</label>
+            <div class="code-box">
+              <p class="code-text">A M A Z O N</p>
+            </div>
+          </div>
+          <div>
+            <label class="inputs-label" style="display:block;margin-bottom:.5rem">Type each letter to release your cashback</label>
+            <div class="inputs-row" id="inputs2">
+              <input class="letter-input" type="text" maxlength="1" data-index="0" data-answer="A" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="1" data-answer="M" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="2" data-answer="A" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="3" data-answer="Z" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="4" data-answer="O" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="5" data-answer="N" autocomplete="off">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 3: APPLE -->
+      <div id="page3" class="page hidden">
+        <div class="google-card" style="margin-bottom:.75rem">
+          <div style="text-align:center;margin-bottom:.75rem">
+            <span class="redemption-badge">Redemption 3 of 3</span>
+            <h2 class="card-title">Redeem Your Cashback</h2>
+          </div>
+          <div class="amount-box" style="margin-bottom:.75rem">
+            <p class="amount-label">Amount to receive</p>
+            <p class="amount-value">$ 65.00</p>
+          </div>
+          <div class="brand-image-box" style="margin-bottom:.75rem">
+            <img class="brand-image" src="data:image/png;base64,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" alt="APPLE">
+          </div>
+          <div style="margin-bottom:.5rem">
+            <label class="code-label" style="display:block;margin-bottom:.375rem">Code</label>
+            <div class="code-box">
+              <p class="code-text">A P P L E</p>
+            </div>
+          </div>
+          <div>
+            <label class="inputs-label" style="display:block;margin-bottom:.5rem">Type each letter to release your cashback</label>
+            <div class="inputs-row" id="inputs3">
+              <input class="letter-input" type="text" maxlength="1" data-index="0" data-answer="A" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="1" data-answer="P" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="2" data-answer="P" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="3" data-answer="L" autocomplete="off">
+              <input class="letter-input" type="text" maxlength="1" data-index="4" data-answer="E" autocomplete="off">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 4: SUCCESS -->
+      <div id="page4" class="page hidden">
+        <div style="width:100%;text-align:center;margin-bottom:1rem">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <div style="margin-top:.75rem">
+            <h1 class="success-title">All Done!</h1>
+            <p class="success-subtitle">You completed all redemptions and your balance<br>is available for withdrawal!</p>
+          </div>
+        </div>
+        <div class="google-card" style="margin-bottom:.75rem">
+          <div style="text-align:center;margin-bottom:.75rem">
+            <p class="total-balance-label">Total Balance Released</p>
+            <p class="total-balance-amount">$ 230.00</p>
+          </div>
+          <div class="separator"></div>
+          <div class="transaction-item">
+            <div style="display:flex;align-items:center;gap:.75rem">
+              <div class="transaction-logo">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAEeUlEQVR4AexYS0hUYRSemZzrOI1ovkcNwRIZo/BRUELaIlxaIMpQtGvVUgpqpxESblqI1Eo3WfhYBFGBKLgIQiTL0Vbli3xllq/xkcw4fV/MgON1nMe96XD95fz8Z849/znnO9/x/qMG3RH7EYC1TrhgWDCssQ6IkdYYoTI4gmFZSzRmEAxrjFAZHMGwrCUaMwiGNUaoDM5RY1gnAMtmQGMGwbDGCJXBEQzLWhKeQR+euyJvknUs3Ag8FO6ZQP4E66mrq1Mz5s5cjM/YMV7jNna3x+PRc0EPSRggJMcgTozjsVqtNofDccnrS5tXjXhjDLLI5UEUgnRh12VlZRXabLbrdrv9fH19vRE2NgTb/sKA+3sEf8pE25mZmSfX1tbqnE7nV+8RFuhVQ94YizWRReoE6MZpd0dHh5SYmHglPj6+ITc3t02v11fExMSMtre3D2KqtuATUj4Gh2/EwqJ42DgzM/MIxYx0d3fPw+BjBGpQYQz6c7FogiSLnpycHGtKSopdkqSumpqaydjY2GZ8dprN5vtTU1ONw/hBdDYEW2iiFDCzeND5AihGdPwNdgJg4VADCvMSIHf6smh3dXW1BDDFaWlp9xISEvomJydnwORLgMy1Wq13m5qazo2PjzeMjIx8R2SeZy6ooQsThu4t92Sx0tLSEkfq9dbW1i+40MYFNaCQRYLcJotgsMpisTR3dnZ+MhgMHxcXFxs3NjbKAbo9IyOjFNNTPDs72waWecYHlHqwPLIClALWo/uxiLqA5UCR+3Xc90yP0TyF8b8N9l5NT0870Kiu9fX1OwBbgGc/UlNTH5eWluYtLy/bMbUfEJtnFQFFjH+iFLBhYWGBXd5AtCkwvYKdhdEG1U9oM8FSazKZ3q6urj4DuGsulysFQHUY5S9JSUm1lZWVZ8Hog76+vm/wZSwuno2IUcTwE8WAEY3F8CXzB7oTi+OKzU/IEHCaqoxG4w2AJchjYHgbo/y+sLDwVktLywU070lra+tPnCRI1kaQXDCpIwyqRiQfaAKnvjMmwdJm3dzcLMIop4FRd1xc3Au8iCpwjV0eHBx8jt9PTonvOiLIvRq3M25EulLAPjB7Jecz2gk2GcpFsGsG6KclJSVXcWffHBsb64WdfmSU+14Ng4taolP8DwA2TI9yCAqbn9BmhuWMJEnleNsuYXQf4uXU0N/f74CdZwmUfmSUO8z/V5hUSQZXenr6cQQ4gWXB8unpeCGdxrViy87ONpSVlfXOzc29GxgYmIMPQTIvR5ZAYTo4YWIl2Vz4Pvsbd6kB4JKx5+E7bg50S35+/kpRUdEQvhEN9/T0LCMJc3EaCJJgYTp4YRGKsuL6cOEb0SzuzNGJiYkh3KufqeOPiHk+Q3CC5CLIAxlb5AwoigF7IxOQDtcM2aOJn7moEyQX9UNfagHeDYifuQ4d4O4C1AK8O27UfhaAo5YalQoTDKvUyKgNIxiOWmpUKkwwrFIjozaMYDhqqVGjMMQQDKMJmhbBsKbpBTjBMJqgaREMa5pegDtyDP8FAAD//17VAHQAAAAGSURBVAMAJhJIiPdaIo0AAAAASUVORK5CYII=" alt="Nike">
+              </div>
+              <span class="transaction-name">Nike</span>
+            </div>
+            <span class="transaction-amount">+ $76.67</span>
+          </div>
+          <div class="transaction-item">
+            <div style="display:flex;align-items:center;gap:.75rem">
+              <div class="transaction-logo">
+                <img src="data:image/png;base64,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" alt="Amazon">
+              </div>
+              <span class="transaction-name">Amazon</span>
+            </div>
+            <span class="transaction-amount">+ $88.33</span>
+          </div>
+          <div class="transaction-item" style="margin-bottom:0">
+            <div style="display:flex;align-items:center;gap:.75rem">
+              <div class="transaction-logo">
+                <img src="data:image/png;base64,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" alt="Apple">
+              </div>
+              <span class="transaction-name">Apple</span>
+            </div>
+            <span class="transaction-amount">+ $65.00</span>
+          </div>
+        </div>
+        <div>
+          <button type="button" id="openWithdrawModal" class="google-btn-success">Withdraw Funds</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Withdrawal Method Modal -->
+  <div class="modal-overlay" id="withdrawModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="withdrawModalTitle">
+      <div class="modal-header">
+        <h3 id="withdrawModalTitle">Select Withdrawal Method</h3>
+        <button type="button" class="modal-close" id="closeWithdrawModal" aria-label="Close">&#10005;</button>
+      </div>
+      <ul class="modal-list" id="methodList">
+        <li data-method="US Bank Transfer (ACH)" data-region="US">
+          <span class="method-icon">&#127974;</span>
+          <span class="method-name">US Bank Transfer (ACH)</span>
+          <span class="method-region">US</span>
+        </li>
+        <li data-method="Zelle" data-region="US">
+          <span class="method-icon">&#128179;</span>
+          <span class="method-name">Zelle</span>
+          <span class="method-region">US</span>
+        </li>
+        <li data-method="PayPal" data-region="US / UK / CA">
+          <span class="method-icon">&#128179;</span>
+          <span class="method-name">PayPal</span>
+          <span class="method-region">US / UK / CA</span>
+        </li>
+        <li data-method="UK Bank Transfer (BACS)" data-region="UK">
+          <span class="method-icon">&#127974;</span>
+          <span class="method-name">UK Bank Transfer (BACS)</span>
+          <span class="method-region">UK</span>
+        </li>
+        <li data-method="Canadian Bank Transfer (EFT)" data-region="CA">
+          <span class="method-icon">&#127974;</span>
+          <span class="method-name">Canadian Bank Transfer (EFT)</span>
+          <span class="method-region">CA</span>
+        </li>
+        <li data-method="Cash App" data-region="US">
+          <span class="method-icon">&#128179;</span>
+          <span class="method-name">Cash App</span>
+          <span class="method-region">US</span>
+        </li>
+        <li data-method="Venmo" data-region="US">
+          <span class="method-icon">&#128179;</span>
+          <span class="method-name">Venmo</span>
+          <span class="method-region">US</span>
+        </li>
+        <li data-method="Wise" data-region="US / UK / CA">
+          <span class="method-icon">&#128179;</span>
+          <span class="method-name">Wise</span>
+          <span class="method-region">US / UK / CA</span>
+        </li>
+        <li data-method="Cryptocurrency (BTC/USDT)" data-region="Worldwide">
+          <span class="method-icon">&#128179;</span>
+          <span class="method-name">Cryptocurrency (BTC/USDT)</span>
+          <span class="method-region">Worldwide</span>
+        </li>
+        <li data-method="Gift Card (Amazon/Visa)" data-region="US / UK / CA">
+          <span class="method-icon">&#127873;</span>
+          <span class="method-name">Gift Card (Amazon/Visa)</span>
+          <span class="method-region">US / UK / CA</span>
+        </li>
+        <li data-method="Other Method" data-region="Worldwide">
+          <span class="method-icon">&#128179;</span>
+          <span class="method-name">Other Method</span>
+          <span class="method-region">Worldwide</span>
+        </li>
+      </ul>
+      <button type="button" class="modal-confirm-btn" id="confirmWithdrawMethod">Confirm Selection</button>
+    </div>
+  </div>
+
+  <!-- Withdrawal Confirmation Modal -->
+  <div class="modal-overlay" id="confirmModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="confirmModalTitle">
+      <div class="confirm-content">
+        <div class="confirm-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <p class="confirm-method-name" id="confirmModalTitle">Venmo</p>
+        <p class="confirm-method-sub">Selected as withdrawal method</p>
+        <div class="confirm-amount-box">
+          <p class="confirm-amount-label">Amount to withdraw</p>
+          <p class="confirm-amount-value" id="confirmAmount">$230.00</p>
+        </div>
+        <p class="confirm-hint" id="confirmHint">Watch a quick presentation to learn how to withdraw your money via Venmo.</p>
+        <a class="watch-video-btn" id="watchVideoButton" href="../vsl.html">Watch Video Now</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="reward-toast" id="rewardToast" aria-hidden="true">
+    <div class="reward-toast-box">
+      <div class="reward-toast-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <p class="reward-toast-amount" id="rewardToastAmount">+$76.67 earned!</p>
+      <p class="reward-toast-text" id="rewardToastText">NIKE cashback redeemed</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-links-row">
+      <a href="#">Privacy Policy</a><span class="dot">·</span>
+      <a href="#">Terms</a><span class="dot">·</span>
+      <a href="#">Cookies</a><span class="dot">·</span>
+      <a href="#">Refund</a><span class="dot">·</span>
+      <a href="#">Disclaimer</a>
+    </div>
+    <p class="footer-text">D A Digital LTDA · CNPJ: 59.973.085/0001-37</p>
+    <p class="footer-text">support@cashbacks.com</p>
+    <p class="footer-text">© 2025 . All rights reserved.</p>
+    <p class="footer-text-sm">This site is not affiliated with, endorsed by, or sponsored by Google LLC, Alphabet Inc., TikTok, ByteDance, YouTube, or any of their subsidiaries. All trademarks belong to their respective owners.</p>
+    <p class="footer-text-sm">Disclaimer: This content is for informational and educational purposes only. We do not guarantee any specific results, earnings, or outcomes.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var WATCH_VIDEO_URL = '../vsl.html';
+  var successSound = new Audio('src/audio.mp3');
+  successSound.preload = 'auto';
+
+  function playSuccessSound() {
+    successSound.currentTime = 0;
+    successSound.play().catch(function() {});
+  }
+
+  var state = {
+    page: 1,
+    balance: 0,
+    rewards: [0, 76.67, 88.33, 65.00],
+    progress: [0, 33, 66, 100],
+    selectedMethod: '',
+    pageNames: ['', 'NIKE', 'AMAZON', 'APPLE'],
+    isTransitioning: false
+  };
+
+
+  var withdrawModal = document.getElementById('withdrawModal');
+  var confirmModal = document.getElementById('confirmModal');
+  var confirmButton = document.getElementById('confirmWithdrawMethod');
+  var methodItems = Array.prototype.slice.call(document.querySelectorAll('#methodList li'));
+  var watchVideoButton = document.getElementById('watchVideoButton');
+  var confirmTitle = document.getElementById('confirmModalTitle');
+  var confirmHint = document.getElementById('confirmHint');
+  var confirmAmount = document.getElementById('confirmAmount');
+  var balanceStatus = document.getElementById('balanceStatus');
+  var rewardToast = document.getElementById('rewardToast');
+  var rewardToastAmount = document.getElementById('rewardToastAmount');
+  var rewardToastText = document.getElementById('rewardToastText');
+
+  function formatMoney(n) {
+    return '$' + n.toFixed(2);
+  }
+
+  function updateUI() {
+    document.getElementById('progressPct').textContent = state.progress[state.page - 1] + '%';
+    document.getElementById('progressFill').style.width = state.progress[state.page - 1] + '%';
+    document.getElementById('balanceAmount').textContent = formatMoney(state.balance);
+  }
+
+  function animateBalance(from, to, duration, onComplete) {
+    var start = performance.now();
+
+    function step(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var current = from + ((to - from) * progress);
+      document.getElementById('balanceAmount').textContent = formatMoney(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else if (onComplete) {
+        onComplete();
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  function showRewardToast(amount, brand) {
+    rewardToastAmount.textContent = '+' + formatMoney(amount) + ' earned!';
+    rewardToastText.textContent = brand + ' cashback redeemed';
+    rewardToast.classList.add('active');
+    rewardToast.setAttribute('aria-hidden', 'false');
+    balanceStatus.classList.add('active');
+    playSuccessSound();
+  }
+
+  function hideRewardToast() {
+    rewardToast.classList.remove('active');
+    rewardToast.setAttribute('aria-hidden', 'true');
+    balanceStatus.classList.remove('active');
+  }
+
+  function showPage(n) {
+    [1,2,3,4].forEach(function(i){
+      var el = document.getElementById('page' + i);
+      if(i === n) { el.classList.remove('hidden'); }
+      else { el.classList.add('hidden'); }
+    });
+  }
+
+  function openModal(modal) {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeModal(modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  function updateConfirmButton() {
+    var enabled = !!state.selectedMethod;
+    confirmButton.classList.toggle('enabled', enabled);
+    confirmButton.disabled = !enabled;
+  }
+
+  function selectMethod(item) {
+    methodItems.forEach(function(methodItem){
+      methodItem.classList.remove('selected');
+    });
+    item.classList.add('selected');
+    state.selectedMethod = item.getAttribute('data-method');
+    updateConfirmButton();
+  }
+
+  function initInputs(containerId) {
+    var container = document.getElementById(containerId);
+    var inputs = container.querySelectorAll('.letter-input');
+
+    inputs.forEach(function(inp, idx) {
+      inp.value = '';
+      inp.classList.remove('valid','invalid');
+
+      inp.addEventListener('input', function() {
+        var val = this.value.toUpperCase();
+        this.value = val;
+        if (!val) return;
+
+        var expected = this.dataset.answer;
+
+        if (val === expected.toUpperCase()) {
+          this.classList.add('valid');
+          this.classList.remove('invalid');
+          var next = inputs[idx + 1];
+          if (next) {
+            next.focus();
+          } else {
+            setTimeout(function() { checkComplete(inputs); }, 150);
+          }
+        } else {
+          this.classList.add('invalid');
+          this.classList.remove('valid');
+          setTimeout(function() {
+            inp.value = '';
+            inp.classList.remove('invalid');
+          }, 400);
+        }
+      });
+
+      inp.addEventListener('keydown', function(e) {
+        if (e.key === 'Backspace' && !this.value) {
+          var prev = inputs[idx - 1];
+          if (prev) {
+            prev.focus();
+            prev.value = '';
+            prev.classList.remove('valid','invalid');
+          }
+        }
+      });
+    });
+
+    if (inputs[0]) inputs[0].focus();
+  }
+
+  function checkComplete(inputs) {
+    var allValid = Array.from(inputs).every(function(inp){ return inp.classList.contains('valid'); });
+    if (!allValid || state.isTransitioning) return;
+
+    var page = state.page;
+    var reward = state.rewards[page];
+    var previousBalance = state.balance;
+    var nextBalance = previousBalance + reward;
+    var brand = state.pageNames[page];
+
+    state.isTransitioning = true;
+    showRewardToast(reward, brand);
+    animateBalance(previousBalance, nextBalance, 2000, function() {
+      state.balance = nextBalance;
+      document.getElementById('balanceAmount').textContent = formatMoney(state.balance);
+    });
+
+    setTimeout(function() {
+      hideRewardToast();
+      state.page += 1;
+      state.isTransitioning = false;
+
+      if (state.page <= 3) {
+        updateUI();
+        showPage(state.page);
+        initInputs('inputs' + state.page);
+      } else {
+        state.page = 4;
+        document.getElementById('progressPct').textContent = '100%';
+        document.getElementById('progressFill').style.width = '100%';
+        document.getElementById('balanceAmount').textContent = formatMoney(state.balance);
+        showPage(4);
+      }
+    }, 2000);
+  }
+
+  document.getElementById('openWithdrawModal').addEventListener('click', function() {
+    closeModal(confirmModal);
+    openModal(withdrawModal);
+  });
+
+  document.getElementById('closeWithdrawModal').addEventListener('click', function() {
+    closeModal(withdrawModal);
+  });
+
+  withdrawModal.addEventListener('click', function(e) {
+    if (e.target === withdrawModal) {
+      closeModal(withdrawModal);
+    }
+  });
+
+  confirmModal.addEventListener('click', function(e) {
+    if (e.target === confirmModal) {
+      closeModal(confirmModal);
+    }
+  });
+
+  methodItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      selectMethod(item);
+    });
+  });
+
+  confirmButton.addEventListener('click', function() {
+    if (!state.selectedMethod) return;
+    confirmTitle.textContent = state.selectedMethod;
+    confirmHint.textContent = 'Watch a quick presentation to learn how to withdraw your money via ' + state.selectedMethod + '.';
+    confirmAmount.textContent = formatMoney(state.balance);
+    watchVideoButton.href = WATCH_VIDEO_URL;
+    closeModal(withdrawModal);
+    openModal(confirmModal);
+  });
+
+  updateConfirmButton();
+  updateUI();
+  showPage(1);
+  initInputs('inputs1');
+})();
+</script>
+</body>
+</html>
